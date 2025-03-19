@@ -1,101 +1,77 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import { getHero } from "@/sanity/sanity.query";
+import type { HeroType } from "@/types";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [heroData, setHeroData] = useState<HeroType[]>([]);
+  const [swiperRef, setSwiperRef] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getHero();
+        setHeroData(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Erreur lors du chargement des données :", error);
+        setHeroData([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (loading) return <p>Chargement...</p>;
+
+  return (
+    <main>
+      {heroData.length > 0 ? (
+        heroData.map((hero) => (
+          <section key={hero._id}>
+            <div>
+              <h1>{hero.title}</h1>
+              <p>{hero.catchphrase}</p>
+              {hero.backgroundImage && (
+                <img src={hero.backgroundImage.image} alt={hero.backgroundImage.alt} />
+              )}
+            </div>
+
+            <div>
+              <h2>{hero.testimonialsIntro}</h2>
+
+              {hero.testimonials && hero.testimonials.length > 0 ? (
+                <Swiper
+                  modules={[Autoplay]}
+                  spaceBetween={20}
+                  slidesPerView={1}
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  loop={hero.testimonials.length > 1} // ✅ Désactive loop si 1 seul témoignage
+                  onSwiper={setSwiperRef}
+                  onMouseEnter={() => swiperRef?.autoplay?.stop()}
+                  onMouseLeave={() => swiperRef?.autoplay?.start()}
+                >
+                  {hero.testimonials.map((testimonial, index) => (
+                    <SwiperSlide key={index}>
+                      <blockquote>"{testimonial.quote}"</blockquote>
+                      {testimonial.author && <cite>- {testimonial.author}</cite>}
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              ) : (
+                <p>Aucun témoignage disponible.</p>
+              )}
+            </div>
+          </section>
+        ))
+      ) : (
+        <p>Aucune donnée disponible.</p>
+      )}
+    </main>
   );
 }
