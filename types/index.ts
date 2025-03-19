@@ -11,7 +11,7 @@ export type HeroType = {
     testimonialsIntro: string;
     testimonials: {
       quote: string;
-      author?: string;
+      author: string;
     }[];
   };
   

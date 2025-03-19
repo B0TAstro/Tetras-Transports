@@ -9,7 +9,6 @@ const hero = {
     type: "document",
     icon: BiHomeAlt,
     fields: [
-        // SECTION HERO PRINCIPALE
         defineField({
             name: "title",
             title: "Titre",
@@ -37,7 +36,6 @@ const hero = {
                 },
             ],
         }),
-        // SECTION AVIS CLIENTS
         defineField({
             name: "testimonialsIntro",
             title: "Introduction section des avis clients",

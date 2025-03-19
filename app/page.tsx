@@ -1,77 +1,47 @@
-"use client";
+// app/page.tsx
 
-import { useEffect, useState } from "react";
-import { getHero } from "@/sanity/sanity.query";
-import type { HeroType } from "@/types";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
+import { getHero } from '@/sanity/sanity.query';
+import type { HeroType } from '@/types';
 
-export default function Home() {
-  const [heroData, setHeroData] = useState<HeroType[]>([]);
-  const [swiperRef, setSwiperRef] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getHero();
-        setHeroData(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error("Erreur lors du chargement des données :", error);
-        setHeroData([]);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
-
-  if (loading) return <p>Chargement...</p>;
+export default async function Home(): Promise<JSX.Element> {
+  const hero: HeroType[] = await getHero();
 
   return (
-    <main>
-      {heroData.length > 0 ? (
-        heroData.map((hero) => (
-          <section key={hero._id}>
-            <div>
-              <h1>{hero.title}</h1>
-              <p>{hero.catchphrase}</p>
-              {hero.backgroundImage && (
-                <img src={hero.backgroundImage.image} alt={hero.backgroundImage.alt} />
-              )}
+    <>
+      {hero.length > 0 &&
+        hero.map((data) => (
+          console.log(hero),
+          <section
+            key={data._id}
+            className="relative flex flex-col items-center text-center text-white py-20 px-6 bg-cover bg-center"
+            style={{ backgroundImage: `url(${data.backgroundImage.image})` }}
+          >
+            <div className="max-w-3xl bg-black bg-opacity-50 p-8 rounded-lg">
+              <h1 className="text-4xl font-bold mb-4">{data.title}</h1>
+              <p className="text-lg mb-6">{data.catchphrase}</p>
             </div>
 
-            <div>
-              <h2>{hero.testimonialsIntro}</h2>
+            {data.testimonials ? (
+              <p>Il y a des témoignages</p>
+            ) : (
+              <p>Aucun témoignage trouvé</p>
+            )}
 
-              {hero.testimonials && hero.testimonials.length > 0 ? (
-                <Swiper
-                  modules={[Autoplay]}
-                  spaceBetween={20}
-                  slidesPerView={1}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  loop={hero.testimonials.length > 1} // ✅ Désactive loop si 1 seul témoignage
-                  onSwiper={setSwiperRef}
-                  onMouseEnter={() => swiperRef?.autoplay?.stop()}
-                  onMouseLeave={() => swiperRef?.autoplay?.start()}
-                >
-                  {hero.testimonials.map((testimonial, index) => (
-                    <SwiperSlide key={index}>
-                      <blockquote>"{testimonial.quote}"</blockquote>
-                      {testimonial.author && <cite>- {testimonial.author}</cite>}
-                    </SwiperSlide>
+            {data.testimonials && data.testimonials.length > 0 && (
+              <div className="mt-12 max-w-2xl bg-white text-black p-6 rounded-lg shadow-md">
+                <h2 className="text-2xl font-semibold mb-4">{data.testimonialsIntro}</h2>
+                <ul>
+                  {data.testimonials.map((testimonial, index) => (
+                    <li key={index} className="mb-4">
+                      <blockquote className="italic">“{testimonial.quote}”</blockquote>
+                      <p className="italic">- {testimonial.author || "Anonyme"}</p>
+                    </li>
                   ))}
-                </Swiper>
-              ) : (
-                <p>Aucun témoignage disponible.</p>
-              )}
-            </div>
+                </ul>
+              </div>
+            )}
           </section>
-        ))
-      ) : (
-        <p>Aucune donnée disponible.</p>
-      )}
-    </main>
+        ))}
+    </>
   );
 }
