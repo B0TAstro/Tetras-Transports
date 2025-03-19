@@ -39,9 +39,21 @@ const hero = {
         defineField({
             name: "testimonialsIntro",
             title: "Introduction section des avis clients",
-            type: "string",
+            type: "array",
             description: "Texte d’introduction de la section des avis clients.",
             validation: (Rule) => Rule.required(),
+            of: [
+                {
+                    type: "block",
+                    styles: [{ title: "Normal", value: "normal" }],
+                    marks: {
+                        decorators: [
+                            { title: "Gras", value: "strong" },
+                            { title: "Italique", value: "em" },
+                        ],
+                    },
+                },
+            ],
         }),
         defineField({
             name: "testimonials",
