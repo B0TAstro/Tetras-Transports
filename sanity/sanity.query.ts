@@ -18,3 +18,15 @@ export async function getHero() {
     }`
   );
 }
+
+export async function getWho() {
+  return client.fetch(
+    groq`*[_type == "who"][0]{
+      _id,
+      title,
+      whoTexte,
+      Image1 {alt, "image": asset->url},
+      Image2 {alt, "image": asset->url}
+    }`
+  );
+}

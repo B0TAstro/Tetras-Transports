@@ -5,42 +5,44 @@ import { BiHomeAlt } from "react-icons/bi";
 
 const hero = {
     name: "hero",
-    title: "Hero Section",
+    title: "Héro - Section",
     type: "document",
     icon: BiHomeAlt,
     fields: [
         defineField({
             name: "title",
-            title: "Titre",
+            title: "Titre de la section",
             type: "string",
             validation: (Rule) => Rule.required(),
+            description: "Le titre principal de la section 'Héro'",
         }),
         defineField({
             name: "catchphrase",
-            title: "Phrase d'accroche",
+            title: "Phrase d'Accroche",
             type: "string",
-            description: "Décrivez votre activité en une phrase engageante.",
+            description: "Une phrase engageante qui décrit votre activité",
             validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: "backgroundImage",
-            title: "Image de fond",
+            title: "Image de Fond",
             type: "image",
-            description: "Image de fond pour la section hero",
+            description: "L'image de fond pour la section 'Héro'",
             options: { hotspot: true },
             fields: [
                 {
                     name: "alt",
-                    title: "Texte alternatif",
+                    title: "Texte Alternatif",
                     type: "string",
+                    description: "Texte alternatif pour l'image de fond",
                 },
             ],
         }),
         defineField({
             name: "testimonialsIntro",
-            title: "Introduction section des avis clients",
+            title: "Introduction des Avis Clients",
             type: "array",
-            description: "Texte d’introduction de la section des avis clients.",
+            description: "Texte d’introduction pour la section des avis clients",
             validation: (Rule) => Rule.required(),
             of: [
                 {
@@ -59,7 +61,7 @@ const hero = {
             name: "testimonials",
             title: "Avis Clients",
             type: "array",
-            description: "Ajoutez jusqu'à 15 avis clients maximum.",
+            description: "Ajoutez jusqu'à 15 avis clients maximum",
             validation: (Rule) => Rule.max(15),
             of: [
                 defineArrayMember({
@@ -70,11 +72,13 @@ const hero = {
                             title: "Avis",
                             type: "text",
                             validation: (Rule) => Rule.required().max(200),
+                            description: "Le texte de l'avis du client (max 200 caractères)",
                         },
                         {
                             name: "author",
-                            title: "Auteur",
+                            title: "Auteur de l'Avis",
                             type: "string",
+                            description: "Le nom de l'auteur de l'avis",
                         },
                     ],
                 }),
