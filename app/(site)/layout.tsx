@@ -1,8 +1,10 @@
 // app/layout.tsx
 
+import "../globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
-import "./globals.css";
+import Navbar from "../(site)/components/layout/Navbar";
+import Footer from "../(site)/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,10 +33,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -1,0 +1,6 @@
+/* components/TestimonialsSlider.css */
+
+.swiper-slide {
+    width: auto;
+    flex-shrink: 0;
+  }  

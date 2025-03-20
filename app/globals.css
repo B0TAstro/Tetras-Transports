@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+* {
+  outline: 1px solid red;
+}
+
 :root {
   --background: #ffffff;
   --color-dark-100: #09090B;
@@ -19,3 +23,7 @@
 .font-inter {
   font-family: var(--font-inter);
 }
+
+body {
+  position: relative;
+} 
