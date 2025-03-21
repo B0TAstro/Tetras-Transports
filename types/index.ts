@@ -63,8 +63,8 @@ export type MapType = {
 
 export type ServicesType = {
   _id: string;
-  _type: "service";
-  services: Array<{
+  _type: "services";
+  listServices: Array<{
     _key: string;
     titre: string;
     serviceTexte: Array<{

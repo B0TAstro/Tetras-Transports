@@ -3,14 +3,14 @@
 import { defineField } from "sanity";
 import { LuTruck } from "react-icons/lu";
 
-const service = {
-    name: "service",
+const services = {
+    name: "services",
     title: "Services - Section",
     type: "document",
     icon: LuTruck,
     fields: [
         defineField({
-            name: "services",
+            name: "listServices",
             title: "Services",
             description: "Liste des services proposés",
             type: "array",
@@ -65,4 +65,4 @@ const service = {
     ],
 };
 
-export default service;
+export default services;

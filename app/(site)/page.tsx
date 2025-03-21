@@ -19,7 +19,7 @@ export default async function Home() {
   const sections: SectionType[] = await getSections();
 
   const orderedSections = sections.sort((a, b) => {
-    const order = ['hero', 'who', 'service', 'map'];
+    const order = ['hero', 'who', 'services', 'map'];
     return order.indexOf(a._type) - order.indexOf(b._type);
   });
 
