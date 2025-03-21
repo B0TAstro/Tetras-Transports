@@ -1,6 +1,6 @@
 // schemas/who.ts
 
-import { defineField, defineArrayMember } from "sanity";
+import { defineField } from "sanity";
 import { BiUser } from "react-icons/bi";
 
 const who = {
@@ -36,7 +36,7 @@ const who = {
             ],
         }),
         defineField({
-            name: "Image1",
+            name: "image1",
             title: "Première Image",
             type: "image",
             description: "La première image illustrant la section",
@@ -51,7 +51,7 @@ const who = {
             ],
         }),
         defineField({
-            name: "Image2",
+            name: "image2",
             title: "Deuxième Image",
             type: "image",
             description: "La deuxième image illustrant la section",

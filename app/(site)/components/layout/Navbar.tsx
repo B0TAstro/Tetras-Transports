@@ -8,22 +8,42 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Logo from "../../../../public/logo.png";
 
+const smoothScroll = (event: React.MouseEvent, sectionId: string) => {
+  event.preventDefault();
+  const element = document.getElementById(sectionId);
+  if (element) {
+    const offset = 140;
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: elementPosition - offset,
+      behavior: "smooth",
+    });
+  }
+};
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 w-full backdrop-blur z-10 flex justify-between items-center pr-20 pl-20 md:px-20">
-      <Link href="/">
+      <Link href="/" onClick={(e) => smoothScroll(e, "top")}>
         <Image src={Logo} width={140} height={140} alt="logo" className="aspect-square flex-shrink-0" />
       </Link>
 
       <nav className="hidden md:flex">
         <ul className="flex items-center gap-6">
-          {["À propos", "Nos services", "Nous contacter"].map((text, index) => (
+          {[
+            { text: "À propos", href: "who" },
+            { text: "Nos services", href: "services" },
+            { text: "Nous contacter", href: "contact" }
+          ].map(({ text, href }, index) => (
             <li key={index}>
-              <Link href="/" className="font-inter text-lg font-medium hover:text-[#1D4ED8] duration-300">
+              <button
+                onClick={(e) => smoothScroll(e, href)}
+                className="font-inter text-lg font-medium hover:text-[#1D4ED8] duration-300"
+              >
                 {text}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>
@@ -32,6 +52,7 @@ export default function Navbar() {
       <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <X size={32} /> : <Menu size={32} />}
       </button>
+
       <nav
         className={`fixed top-0 right-0 h-full w-3/4 bg-white shadow-lg transform ${isOpen ? "translate-x-0" : "translate-x-full"
           } transition-transform duration-300 ease-in-out md:hidden`}

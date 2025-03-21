@@ -2,6 +2,7 @@
 
 export type HeroType = {
   _id: string;
+  _type: "hero";
   title: string;
   catchphrase: string;
   backgroundImage: {
@@ -27,6 +28,7 @@ export type HeroType = {
 
 export type WhoType = {
   _id: string;
+  _type: "who";
   title: string;
   whoTexte: Array<{
     _key: string;
@@ -39,12 +41,24 @@ export type WhoType = {
       marks: string[];
     }>;
   }>;
-  Image1: {
+  image1: {
     alt: string;
     image: string;
   };
-  Image2: {
+  image2: {
     alt: string;
     image: string;
   };
 };
+
+export type MapType = {
+  _id: string;
+  _type: "map";
+  title: string;
+  imageMap: {
+    alt: string;
+    image: string;
+  };
+};
+
+export type SectionType = HeroType | WhoType | MapType;

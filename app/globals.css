@@ -12,6 +12,14 @@
   --font-inter: "Inter", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+} 
+
 .font-geist {
   font-family: var(--font-geist-sans);
 }
@@ -23,7 +31,3 @@
 .font-inter {
   font-family: var(--font-inter);
 }
-
-body {
-  position: relative;
-} 

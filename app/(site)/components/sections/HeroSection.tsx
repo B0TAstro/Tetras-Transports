@@ -19,12 +19,13 @@ export default async function HeroSection(): Promise<JSX.Element> {
     const hero: HeroType[] = await getHero();
 
     return (
+        //console.log(heroData),
         <>
             {hero.length > 0 &&
                 hero.map((data) => (
                     <section
                         key={data._id}
-                        className="relative font-inter color-dark-100 flex flex-col items-center text-center pt-87 bg-cover bg-center"
+                        className="relative font-inter color-dark-100 flex flex-col items-center text-center pt-87 bg-cover bg-bottom"
                         style={{ backgroundImage: `url("${data.backgroundImage.image}")` }}
                     >
                         <div className="flex w-200 flex-col gap-[24px] items-start">
@@ -74,7 +75,6 @@ export default async function HeroSection(): Promise<JSX.Element> {
                                 )}
                             </div>
                         </div>
-                        <div className="absolute bottom-0 left-0 w-full h-5 bg-gradient-to-t from-white/70 to-transparent backdrop-blur-md"></div>
                     </section>
                 ))}
         </>
