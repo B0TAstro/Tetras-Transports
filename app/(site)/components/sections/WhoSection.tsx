@@ -9,8 +9,9 @@ import type { JSX } from 'react';
 export default async function WhoSection(): Promise<JSX.Element> {
     const whoData: WhoType[] = await getWho();
 
+    // console.log("WhoData:", whoData);
+
     return (
-        //console.log(whoData),
         <>
             {whoData.length > 0 &&
                 whoData.map((data) => (

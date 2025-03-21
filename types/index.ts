@@ -61,4 +61,29 @@ export type MapType = {
   };
 };
 
-export type SectionType = HeroType | WhoType | MapType;
+export type ServicesType = {
+  _id: string;
+  _type: "service";
+  services: Array<{
+    _key: string;
+    titre: string;
+    serviceTexte: Array<{
+      _key: string;
+      _type: "block";
+      style?: string;
+      children: Array<{
+        _key: string;
+        _type: "span";
+        text: string;
+        marks: string[];
+      }>;
+    }>;
+    image: {
+      alt: string;
+      image: string;
+    };
+  }>;
+  boutonContact: string;
+};
+
+export type SectionType = HeroType | WhoType | MapType | ServicesType;

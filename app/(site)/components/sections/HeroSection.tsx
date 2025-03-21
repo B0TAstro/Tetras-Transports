@@ -18,8 +18,9 @@ const components = {
 export default async function HeroSection(): Promise<JSX.Element> {
     const hero: HeroType[] = await getHero();
 
+    // console.log("heroData:", hero);
+
     return (
-        //console.log(heroData),
         <>
             {hero.length > 0 &&
                 hero.map((data) => (

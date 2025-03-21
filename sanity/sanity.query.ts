@@ -5,7 +5,7 @@ import client from "./sanity.client";
 
 export async function getSections() {
   return client.fetch(
-    groq`*[_type in ["hero", "who", "map"]] | order(_type asc){
+    groq`*[_type in ["hero", "who", "service", "map"]] | order(_type asc){
       _id,
       _type,
       title,
@@ -19,7 +19,23 @@ export async function getSections() {
       whoTexte,
       image1 {alt, "image": asset->url},
       image2 {alt, "image": asset->url},
-      imageMap {alt, "image": asset->url}
+      imageMap {alt, "image": asset->url},
+      services[]{
+        _key,
+        titre,
+        serviceTexte[]{
+          _key,
+          _type,
+          style,
+          children[]{
+            _key,
+            _type,
+            text,
+            marks
+          }
+        },
+      },
+      boutonContact
     }`
   );
 }
@@ -61,6 +77,32 @@ export async function getMap() {
       _type,
       title,
       imageMap {alt, "image": asset->url}
+    }`
+  );
+}
+
+export async function getServices() {
+  return client.fetch(
+    groq`*[_type == "service"]{
+      _id,
+      _type,
+      services[]{
+        _key,
+        titre,
+        serviceTexte[]{
+          _key,
+          _type,
+          style,
+          children[]{
+            _key,
+            _type,
+            text,
+            marks
+          }
+        },
+        image { alt, "image": asset->url }
+      },
+      boutonContact
     }`
   );
 }

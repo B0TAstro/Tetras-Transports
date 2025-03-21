@@ -8,8 +8,9 @@ import type { JSX } from 'react';
 export default async function WhoSection(): Promise<JSX.Element> {
     const mapData: MapType[] = await getMap();
 
+    // console.log("MapData:", mapData);
+
     return (
-        // console.log(mapData),
         <>
             {mapData.length > 0 &&
                 mapData.map((data) => (
