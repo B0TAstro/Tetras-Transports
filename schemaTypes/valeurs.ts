@@ -1,6 +1,6 @@
 // schemas/valeurs.ts
 
-import { defineField, defineArrayMember } from "sanity";
+import { defineField } from "sanity";
 import { BiStar } from "react-icons/bi";
 
 const values = {

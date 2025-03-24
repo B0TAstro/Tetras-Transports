@@ -5,7 +5,7 @@ import client from "./sanity.client";
 
 export async function getSections() {
   return client.fetch(
-    groq`*[_type in ["hero", "who", "services", "map"]] | order(_type asc){
+    groq`*[_type in ["hero", "who", "services", "values", "map"]] | order(_type asc){
       _id,
       _type,
       title,
