@@ -100,7 +100,7 @@ const contact = {
                                     { title: "Email", value: "email" },
                                     { title: "Téléphone", value: "tel" },
                                     { title: "Zone de texte", value: "textarea" },
-                                    { title: "Sélection", value: "select" },
+                                    { title: "Sujet", value: "subject" },
                                 ],
                             },
                             validation: (Rule) => Rule.required(),
@@ -133,6 +133,13 @@ const contact = {
                 },
             ],
             description: "Configurez les champs du formulaire de contact",
+        }),
+        defineField({
+            name: "submitButtonText",
+            title: "Texte du bouton d'envoi",
+            type: "string",
+            initialValue: "Envoyer",
+            validation: (Rule) => Rule.required(),
         }),
     ],
 };

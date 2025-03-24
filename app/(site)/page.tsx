@@ -8,6 +8,7 @@ import WhoSection from './components/sections/WhoSection';
 import ServicesSection from './components/sections/ServicesSection';
 import MapSection from './components/sections/MapSection';
 import ValuesSection from './components/sections/ValuesSection';
+import ContactSection from './components/sections/ContactSection';
 
 const sectionComponents: Record<string, React.FC<any>> = {
   hero: HeroSection,
@@ -15,13 +16,14 @@ const sectionComponents: Record<string, React.FC<any>> = {
   services: ServicesSection,
   values: ValuesSection,
   map: MapSection,
+  contact: ContactSection,
 };
 
 export default async function Home() {
   const sections: SectionType[] = await getSections();
 
   const orderedSections = sections.sort((a, b) => {
-    const order = ['hero', 'who', 'services', 'values', 'map'];
+    const order = ['hero', 'who', 'services', 'values', 'map', 'contact'];
     return order.indexOf(a._type) - order.indexOf(b._type);
   });
 

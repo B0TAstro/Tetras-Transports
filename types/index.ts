@@ -101,4 +101,26 @@ export type ValuesType = {
   }>;
 };
 
-export type SectionType = HeroType | WhoType | MapType | ServicesType | ValuesType;
+export type ContactType = {
+  _id: string;
+  _type: "contact";
+  title: string;
+  subtitle?: string;
+  phone?: string;
+  email?: string;
+  socialLinks: Array<{
+    _key: string;
+    platform: "facebook" | "instagram" | "linkedin" | "twitter" | "whatsapp" | "tiktok";
+    url: string;
+  }>;
+  formFields: Array<{
+    _key: string;
+    fieldName: string;
+    fieldType: "text" | "email" | "tel" | "textarea" | "subject";
+    required: boolean;
+    placeholder?: string;
+    options?: string[];
+  }>;
+  submitButtonText: string;
+};
+export type SectionType = HeroType | WhoType | MapType | ServicesType | ValuesType | ContactType;
