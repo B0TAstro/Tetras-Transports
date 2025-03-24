@@ -14,7 +14,7 @@ export default async function WhoSection(): Promise<JSX.Element> {
         <>
             {mapData.length > 0 &&
                 mapData.map((data) => (
-                    <section key={data._id} id="map" className="relative font-inter text-dark-100 pr-20 pl-20 flex justify-between items-center gap-5">
+                    <section key={data._id} id="map" className="relative font-inter text-dark-100 pr-20 pl-20 mt-62 flex justify-between items-center gap-5">
                         <Image
                             src={data.imageMap.image}
                             alt={data.imageMap.alt}

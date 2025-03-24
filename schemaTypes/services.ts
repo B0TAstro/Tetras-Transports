@@ -10,6 +10,12 @@ const services = {
     icon: LuTruck,
     fields: [
         defineField({
+            name: "title",
+            title: "Titre",
+            type: "string",
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: "listServices",
             title: "Services",
             description: "Liste des services proposés",
@@ -38,7 +44,7 @@ const services = {
                             ],
                         },
                         {
-                            name: "image",
+                            name: "imageService",
                             title: "Image de fond",
                             type: "image",
                             description: "Image qui représente le service",

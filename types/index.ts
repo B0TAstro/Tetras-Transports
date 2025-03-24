@@ -64,6 +64,7 @@ export type MapType = {
 export type ServicesType = {
   _id: string;
   _type: "services";
+  title: string;
   listServices: Array<{
     _key: string;
     titre: string;
@@ -78,7 +79,7 @@ export type ServicesType = {
         marks: string[];
       }>;
     }>;
-    image: {
+    imageService: {
       alt: string;
       image: string;
     };
@@ -86,4 +87,18 @@ export type ServicesType = {
   boutonContact: string;
 };
 
-export type SectionType = HeroType | WhoType | MapType | ServicesType;
+export type ValuesType = {
+  _id: string;
+  _type: "values";
+  title: string;
+  listvalues: Array<{
+    _key: string;
+    imageValue: {
+      alt: string;
+      image: string;
+    };
+    titre: string;
+  }>;
+};
+
+export type SectionType = HeroType | WhoType | MapType | ServicesType | ValuesType;

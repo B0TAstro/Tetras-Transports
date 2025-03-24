@@ -20,7 +20,7 @@ export async function getSections() {
       image1 {alt, "image": asset->url},
       image2 {alt, "image": asset->url},
       imageMap {alt, "image": asset->url},
-      services[]{
+      listServices[]{
         _key,
         titre,
         serviceTexte[]{
@@ -34,8 +34,14 @@ export async function getSections() {
             marks
           }
         },
+        imageService { alt, "image": asset->url }
       },
-      boutonContact
+      boutonContact,
+      listvalues[]{
+        _key,
+        imageValue { alt, "image": asset->url },
+        titre
+      }
     }`
   );
 }
@@ -86,6 +92,7 @@ export async function getServices() {
     groq`*[_type == "services"]{
       _id,
       _type,
+      title,
       listServices[]{
         _key,
         titre,
@@ -100,9 +107,24 @@ export async function getServices() {
             marks
           }
         },
-        image { alt, "image": asset->url }
+        imageService { alt, "image": asset->url }
       },
       boutonContact
+    }`
+  );
+}
+
+export async function getValues() {
+  return client.fetch(
+    groq`*[_type == "values"]{
+      _id,
+      _type,
+      title,
+      listvalues[]{
+        _key,
+        imageValue { alt, "image": asset->url },
+        titre
+      }
     }`
   );
 }
