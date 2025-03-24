@@ -41,7 +41,7 @@ export async function getSections() {
         _key,
         imageValue { alt, "image": asset->url },
         titre
-      }
+      },
       subtitle,
       phone,
       email,
@@ -57,8 +57,10 @@ export async function getSections() {
         required,
         placeholder,
         options
-      }
-      submitButtonText
+      },
+      submitButtonText,
+      successMessage,
+      errorMessage
     }`
   );
 }
@@ -148,7 +150,7 @@ export async function getValues() {
 
 export async function getContact() {
   return client.fetch(
-    groq`*[_type == "contact"]{
+    groq`*[_type == "contact"][0]{
       _id,
       _type,
       title,
@@ -160,15 +162,22 @@ export async function getContact() {
         platform,
         url
       },
-      formFields[]{
-        _key,
-        fieldName,
-        fieldType,
-        required,
-        placeholder,
-        options
-      },
-      submitButtonText
+      "formConfig": *[_type == "contactForm" && _id == ^.formReference._ref][0]{
+        _id,
+        formName,
+        recipientEmail,
+        formFields[]{
+          _key,
+          fieldName,
+          fieldType,
+          required,
+          placeholder,
+          options
+        },
+        submitButtonText,
+        successMessage,
+        errorMessage
+      }
     }`
   );
 }

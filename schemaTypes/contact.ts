@@ -77,69 +77,11 @@ const contact = {
             description: "Ajoutez vos liens de réseaux sociaux",
         }),
         defineField({
-            name: "formFields",
-            title: "Champs du formulaire",
-            type: "array",
-            of: [
-                {
-                    type: "object",
-                    fields: [
-                        {
-                            name: "fieldName",
-                            title: "Nom du champ",
-                            type: "string",
-                            validation: (Rule) => Rule.required(),
-                        },
-                        {
-                            name: "fieldType",
-                            title: "Type de champ",
-                            type: "string",
-                            options: {
-                                list: [
-                                    { title: "Texte", value: "text" },
-                                    { title: "Email", value: "email" },
-                                    { title: "Téléphone", value: "tel" },
-                                    { title: "Zone de texte", value: "textarea" },
-                                    { title: "Sujet", value: "subject" },
-                                ],
-                            },
-                            validation: (Rule) => Rule.required(),
-                        },
-                        {
-                            name: "required",
-                            title: "Obligatoire",
-                            type: "boolean",
-                            initialValue: false,
-                        },
-                        {
-                            name: "placeholder",
-                            title: "Texte indicatif",
-                            type: "string",
-                        },
-                        {
-                            name: "options",
-                            title: "Options (pour le champ de sélection)",
-                            type: "array",
-                            of: [{ type: "string" }],
-                            hidden: ({ parent }) => parent?.fieldType !== "select",
-                        },
-                    ],
-                    preview: {
-                        select: {
-                            title: "fieldName",
-                            subtitle: "fieldType",
-                        },
-                    },
-                },
-            ],
-            description: "Configurez les champs du formulaire de contact",
-        }),
-        defineField({
-            name: "submitButtonText",
-            title: "Texte du bouton d'envoi",
-            type: "string",
-            initialValue: "Envoyer",
-            validation: (Rule) => Rule.required(),
+            name: "formReference",
+            title: "Configuration du formulaire",
+            type: "reference",
+            to: [{ type: "contactForm" }],
+            description: "Sélectionnez la configuration du formulaire à utiliser",
         }),
     ],
 };

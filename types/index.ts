@@ -113,6 +113,18 @@ export type ContactType = {
     platform: "facebook" | "instagram" | "linkedin" | "twitter" | "whatsapp" | "tiktok";
     url: string;
   }>;
+  formReference: {
+    _ref: string;
+    _type: "reference";
+  };
+  formConfig?: ContactFormType;
+};
+
+export type ContactFormType = {
+  _id: string;
+  _type: "contactForm";
+  formName: string;
+  recipientEmail: string;
   formFields: Array<{
     _key: string;
     fieldName: string;
@@ -122,5 +134,8 @@ export type ContactType = {
     options?: string[];
   }>;
   submitButtonText: string;
+  successMessage: string;
+  errorMessage: string;
 };
-export type SectionType = HeroType | WhoType | MapType | ServicesType | ValuesType | ContactType;
+
+export type SectionType = HeroType | WhoType | MapType | ServicesType | ValuesType | ContactType | ContactFormType;
