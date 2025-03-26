@@ -67,7 +67,7 @@ export default async function HeroSection(): Promise<JSX.Element> {
                                     </defs>
                                 </svg>
                             </div>
-                            <div className="flex flex-col gap-6 items-center">
+                            <div className="flex flex-col gap-6 items-center  max-w-[100vw]">
                                 <div className="text-center text-[16px] font-[400]">
                                     <PortableText value={data.testimonialsIntro} components={components} />
                                 </div>

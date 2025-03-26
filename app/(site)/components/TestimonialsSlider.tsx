@@ -36,8 +36,8 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
 
   return (
     <div
-      className="testimonials-slider"
-      onMouseEnter={handleMouseEnter}
+    className="testimonials-slider w-full max-w-[99vw]"
+    onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Swiper
