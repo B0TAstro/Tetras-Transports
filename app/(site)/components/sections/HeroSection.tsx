@@ -26,15 +26,15 @@ export default async function HeroSection(): Promise<JSX.Element> {
                 hero.map((data) => (
                     <section
                         key={data._id}
-                        className="relative font-inter color-dark-100 flex flex-col items-center text-center pt-87 bg-cover bg-bottom"
+                        className="relative font-inter color-dark-100 flex flex-col items-center text-center pt-70 md:pt-87 bg-cover bg-bottom"
                         style={{ backgroundImage: `url("${data.backgroundImage.image}")` }}
                     >
-                        <div className="flex w-200 flex-col gap-[24px] items-start">
-                            <h1 className="text-center text-7xl font-bold">{data.title}</h1>
+                        <div className="flex flex-col w-full md:w-200 gap-[24px] pr-5 pl-5 items-start">
+                            <h1 className="text-center text-4xl md:text-7xl font-bold">{data.title}</h1>
                             <p className="text-center text-xl font-normal">{data.catchphrase}</p>
                         </div>
 
-                        <div className="flex w-full flex-col gap-3 items-center mt-45 mb-70">
+                        <div className="flex w-full flex-col gap-3 items-center mt-30 md:mt-45 mb-70">
                             <div className="flex justify-center gap-2 items-end">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
                                     <g clipPath="url(#clip0_22_727)">

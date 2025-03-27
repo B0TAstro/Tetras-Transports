@@ -7,7 +7,7 @@ import type { ContactFormType } from '@/types';
 
 type ContactFormProps = {
     formConfig: ContactFormType;
-}
+};
 
 export default function ContactForm({ formConfig }: ContactFormProps) {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,7 +21,6 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
         setIsSubmitting(true);
         setSubmitStatus(null);
 
-        // Collect form data
         const formData = new FormData(event.currentTarget);
         const formValues = Object.fromEntries(formData.entries());
 
@@ -31,7 +30,7 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formValues)
+                body: JSON.stringify(formValues),
             });
 
             const result = await response.json();
@@ -39,20 +38,19 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
             if (response.ok) {
                 setSubmitStatus({
                     success: true,
-                    message: 'Votre message a été envoyé avec succès !'
+                    message: 'Votre message a été envoyé avec succès !',
                 });
-                // Reset form
                 event.currentTarget.reset();
             } else {
                 setSubmitStatus({
                     success: false,
-                    message: result.message || 'Une erreur est survenue. Veuillez réessayer.'
+                    message: result.message || 'Une erreur est survenue. Veuillez réessayer.',
                 });
             }
         } catch (error) {
             setSubmitStatus({
                 success: false,
-                message: 'Une erreur de réseau est survenue. Veuillez réessayer.'
+                message: 'Une erreur de réseau est survenue. Veuillez réessayer.',
             });
         } finally {
             setIsSubmitting(false);
@@ -60,17 +58,19 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {formConfig.formFields?.map((field, index) => (
                 <div
                     key={field.fieldName || index}
                     className={
-                        field.fieldType === 'textarea' || field.fieldType === 'subject'
-                            ? 'col-span-2'
-                            : ''
+                        field.fieldType === 'textarea'
+                            ? 'md:col-span-2'
+                            : field.fieldType === 'subject'
+                                ? 'md:col-span-1 md:col-start-2'
+                                : 'md:col-span-1'
                     }
                 >
-                    <label htmlFor={field.fieldName} className="block mb-2">
+                    <label htmlFor={field.fieldName} className="block text-[18px] md:text-xl mb-3">
                         {field.fieldName} {field.required && '*'}
                     </label>
                     {field.fieldType === 'textarea' ? (
@@ -80,7 +80,7 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
                             placeholder={field.placeholder}
                             required={field.required}
                             className="w-full bg-white p-3 rounded-sm text-gray-800 placeholder-gray-400 text-base font-medium focus:outline-none focus:ring-1 focus:ring-black resize-none"
-                            rows={6}
+                            rows={7}
                         />
                     ) : field.fieldType === 'subject' ? (
                         <select
@@ -91,7 +91,9 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
                         >
                             <option value="">{field.placeholder || 'Choisissez votre sujet'}</option>
                             {field.options?.map((option, optIndex) => (
-                                <option key={optIndex} value={option}>{option}</option>
+                                <option key={optIndex} value={option}>
+                                    {option}
+                                </option>
                             ))}
                         </select>
                     ) : (
@@ -110,7 +112,7 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`col-span-2 py-3 rounded-md font-semibold transition-colors ${isSubmitting
+                className={`md:col-span-2 py-3 rounded-md font-semibold transition-colors ${isSubmitting
                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                         : 'bg-white text-blue-600 hover:bg-gray-100'
                     }`}
@@ -118,12 +120,9 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
                 {isSubmitting ? 'Envoi en cours...' : formConfig.submitButtonText}
             </button>
 
-            {/* Status message */}
             {submitStatus && (
                 <div
-                    className={`col-span-2 p-3 rounded-md text-center ${submitStatus.success
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-red-100 text-red-800'
+                    className={`md:col-span-2 p-3 rounded-md text-center ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                         }`}
                 >
                     {submitStatus.message}

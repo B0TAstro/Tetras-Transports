@@ -15,7 +15,7 @@ export default async function ServicesSection(): Promise<JSX.Element> {
         <>
             {servicesData.length > 0 &&
                 servicesData.map((data) => (
-                    <section key={data._id} id="services" className="relative font-inter text-dark-100 pr-20 pl-20 mt-60">
+                    <section key={data._id} id="services" className="relative font-inter text-dark-100 pr-5 pl-5 md:pr-20 md:pl-20 mt-25 md:mt-60">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                             {data.listServices.map((service) => (
                                 <div
@@ -27,6 +27,8 @@ export default async function ServicesSection(): Promise<JSX.Element> {
                                             src={service.imageService.image}
                                             alt={service.imageService.alt || service.titre}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            priority
                                             className="object-cover transition-transform duration-250 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent"></div>
@@ -41,7 +43,7 @@ export default async function ServicesSection(): Promise<JSX.Element> {
                             ))}
                         </div>
 
-                        <div className="mt-13 text-center">
+                        <div className="mt-5 md:mt-13 text-center">
                             <a
                                 href="#contact"
                                 className="inline-block text-lg font-medium pr-3 pl-3 pb-2 pt-2 rounded-sm duration-250 border border-dark hover:text-blue-700 hover:border-blue-700"
