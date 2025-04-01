@@ -52,7 +52,7 @@ export default async function handler(
 
         // Send Email
         await transporter.sendMail({
-            from: process.env.SMTP_FROM_EMAIL, // Your verified sender email
+            from: process.env.SMTP_FROM_EMAIL,
             to: contactFormConfig.recipientEmail,
             subject: `Nouveau message de contact: ${sujet}`,
             html: `
