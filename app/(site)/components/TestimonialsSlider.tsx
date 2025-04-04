@@ -8,6 +8,7 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import './TestimonialsSlider.css';
+import type { Swiper as SwiperClass } from 'swiper/types';
 
 type Testimonial = {
   quote: string;
@@ -19,25 +20,23 @@ type TestimonialsSliderProps = {
 };
 
 export default function TestimonialsSlider({ testimonials }: TestimonialsSliderProps) {
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
   const handleMouseEnter = () => {
     if (swiperRef.current) {
       swiperRef.current.autoplay.stop();
-      swiperRef.current.setTransition(0);
     }
   };
 
   const handleMouseLeave = () => {
     if (swiperRef.current) {
-      swiperRef.current.setTransition(6000);
       swiperRef.current.autoplay.start();
     }
   };
 
   return (
     <div
-      className="testimonials-slider w-full max-w-[99vw]"
-      onMouseEnter={handleMouseEnter}
+    className="testimonials-slider w-full max-w-[99vw]"
+    onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Swiper
