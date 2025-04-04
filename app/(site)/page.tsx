@@ -10,7 +10,7 @@ import MapSection from './components/sections/MapSection';
 import ValuesSection from './components/sections/ValuesSection';
 import ContactSection from './components/sections/ContactSection';
 
-const sectionComponents: Record<string, React.FC<any>> = {
+const sectionComponents: Record<string, React.FC<{ data: SectionType }>> = {
   hero: HeroSection,
   who: WhoSection,
   services: ServicesSection,

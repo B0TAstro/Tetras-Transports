@@ -36,8 +36,8 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
 
   return (
     <div
-    className="testimonials-slider w-full max-w-[99vw]"
-    onMouseEnter={handleMouseEnter}
+      className="testimonials-slider w-full max-w-[99vw]"
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Swiper
@@ -59,7 +59,7 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
         {testimonials.map((testimonial, index) => (
           <SwiperSlide key={index}>
             <div className="flex gap-3">
-              <blockquote className="font-inter font-normal italic text-center text-base">"{testimonial.quote}"</blockquote>
+              <blockquote className="font-inter font-normal italic text-center text-base">&quot;{testimonial.quote}&quot;</blockquote>
               <p className="font-inter font-medium italic text-center text-base">{testimonial.author}</p>
             </div>
           </SwiperSlide>

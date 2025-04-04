@@ -52,6 +52,7 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
                 });
             }
         } catch (error) {
+            console.error(error);
             setSubmitStatus({
                 success: false,
                 message: formConfig.errorMessage || 'Une erreur de réseau est survenue. Veuillez réessayer.',
