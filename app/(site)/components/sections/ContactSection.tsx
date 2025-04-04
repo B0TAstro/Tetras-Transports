@@ -5,10 +5,9 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp, FaTiktok } 
 import { getContact } from '@/sanity/sanity.query';
 import ContactForm from './ContactForm';
 import { ContactType } from '@/types';
+
 export default async function ContactSection(): Promise<JSX.Element> {
     const contactData: ContactType = await getContact();
-
-    console.log("contactData:", contactData);
 
     const getSocialIcon = (platform: ContactType["socialLinks"][number]["platform"]) => {
         switch (platform) {
@@ -25,21 +24,25 @@ export default async function ContactSection(): Promise<JSX.Element> {
     return (
         <section id="contact" className="relative font-inter text-white pr-5 pl-5 md:pr-20 md:pl-20 mt-25 md:mt-63 mb-15 overflow-x-hidden">
             <div className="flex flex-col bg-blue-700 p-6 md:p-25 gap-8 md:gap-12 rounded-sm">
-                <div className="flex felx-col gap-4">
-                    <h2 className="text-2xl md:text-5xl font-bold self-stretch">{contactData.title}</h2>
+                <div className="flex flex-col gap-4">
+                    <h2 className="text-2xl md:text-5xl font-bold self-stretch">{contactData.title || 'Contactez-nous'}</h2>
                     {contactData.subtitle && <p className="text-xl">{contactData.subtitle}</p>}
                 </div>
 
                 <div>
-                    {contactData.formConfig && (
+                    {contactData.formConfig ? (
                         <ContactForm formConfig={contactData.formConfig} />
+                    ) : (
+                        <div className="bg-blue-800 p-4 rounded-md">
+                            Formulaire de contact non disponible
+                        </div>
                     )}
                 </div>
 
                 <div className="flex flex-col md:flex-row self-stretch gap-10">
                     {contactData.socialLinks && contactData.socialLinks.length > 0 && (
                         <div className="flex flex-col items-start flex-1 gap-6">
-                            <h3 className="text-xl md:text-2xl font-semibold">Où nous trouvez</h3>
+                            <h3 className="text-xl md:text-2xl font-semibold">Où nous trouver</h3>
                             <div className="flex gap-6">
                                 {contactData.socialLinks.map((social) => (
                                     <a
