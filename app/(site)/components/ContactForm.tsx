@@ -45,17 +45,28 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
                 if (formRef.current) {
                     formRef.current.reset();
                 }
+                setTimeout(() => {
+                    setSubmitStatus(null);
+                }, 10000);
             } else {
                 setSubmitStatus({
                     success: false,
                     message: result.message || formConfig.errorMessage || 'Une erreur est survenue. Veuillez réessayer.',
                 });
+
+                setTimeout(() => {
+                    setSubmitStatus(null);
+                }, 10000);
             }
         } catch (error) {
+            console.error(error);
             setSubmitStatus({
                 success: false,
                 message: formConfig.errorMessage || 'Une erreur de réseau est survenue. Veuillez réessayer.',
             });
+            setTimeout(() => {
+                setSubmitStatus(null);
+            }, 10000);
         } finally {
             setIsSubmitting(false);
         }

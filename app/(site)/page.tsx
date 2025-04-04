@@ -1,5 +1,8 @@
 // app/page.tsx
 
+'use client';
+
+import { useEffect, useState } from 'react';
 import { getSections } from '@/sanity/sanity.query';
 import type { SectionType } from '@/types';
 
@@ -10,7 +13,7 @@ import MapSection from './components/sections/MapSection';
 import ValuesSection from './components/sections/ValuesSection';
 import ContactSection from './components/sections/ContactSection';
 
-const sectionComponents: Record<string, React.FC<any>> = {
+const sectionComponents: Record<string, React.FC<{ data: SectionType }>> = {
   hero: HeroSection,
   who: WhoSection,
   services: ServicesSection,
@@ -19,17 +22,25 @@ const sectionComponents: Record<string, React.FC<any>> = {
   contact: ContactSection,
 };
 
-export default async function Home() {
-  const sections: SectionType[] = await getSections();
-
-  const orderedSections = sections.sort((a, b) => {
-    const order = ['hero', 'who', 'services', 'values', 'map', 'contact'];
-    return order.indexOf(a._type) - order.indexOf(b._type);
-  });
+export default function Home() {
+  const [sections, setSections] = useState<SectionType[]>([]);
+  
+  useEffect(() => {
+    const fetchSections = async () => {
+      const fetchedSections = await getSections();
+      const orderedSections = fetchedSections.sort((a: SectionType, b: SectionType) => {
+        const order = ['hero', 'who', 'services', 'values', 'map', 'contact'];
+        return order.indexOf(a._type) - order.indexOf(b._type);
+      });
+      setSections(orderedSections);
+    };
+    
+    fetchSections();
+  }, []);
 
   return (
     <main>
-      {orderedSections.map((section) => {
+      {sections.map((section) => {
         const SectionComponent = sectionComponents[section._type];
         return SectionComponent ? (
           <section key={section._id} id={section._type}>

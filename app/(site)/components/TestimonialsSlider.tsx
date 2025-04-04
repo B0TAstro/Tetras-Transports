@@ -8,6 +8,7 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import './TestimonialsSlider.css';
+import type { Swiper as SwiperClass } from 'swiper/types';
 
 type Testimonial = {
   quote: string;
@@ -19,17 +20,15 @@ type TestimonialsSliderProps = {
 };
 
 export default function TestimonialsSlider({ testimonials }: TestimonialsSliderProps) {
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
   const handleMouseEnter = () => {
     if (swiperRef.current) {
       swiperRef.current.autoplay.stop();
-      swiperRef.current.setTransition(0);
     }
   };
 
   const handleMouseLeave = () => {
     if (swiperRef.current) {
-      swiperRef.current.setTransition(6000);
       swiperRef.current.autoplay.start();
     }
   };
@@ -59,7 +58,7 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
         {testimonials.map((testimonial, index) => (
           <SwiperSlide key={index}>
             <div className="flex gap-3">
-              <blockquote className="font-inter font-normal italic text-center text-base">"{testimonial.quote}"</blockquote>
+              <blockquote className="font-inter font-normal italic text-center text-base">&quot;{testimonial.quote}&quot;</blockquote>
               <p className="font-inter font-medium italic text-center text-base">{testimonial.author}</p>
             </div>
           </SwiperSlide>
