@@ -7,6 +7,8 @@ import type { WhoType } from '@/types';
 import type { JSX } from 'react';
 
 export default async function WhoSection(): Promise<JSX.Element> {
+    console.log('Rendering WhoSection')
+
     const whoData: WhoType[] = await getWho();
 
     // console.log("WhoData:", whoData);

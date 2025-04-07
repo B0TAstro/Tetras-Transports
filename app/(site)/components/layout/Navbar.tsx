@@ -29,6 +29,8 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  console.log('Rendering Navbar')
+
   const [isOpen, setIsOpen] = useState(false);
 
   return (

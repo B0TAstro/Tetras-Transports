@@ -7,6 +7,8 @@ import type { ServicesType } from '@/types';
 import type { JSX } from 'react';
 
 export default async function ServicesSection(): Promise<JSX.Element> {
+    console.log('Rendering ServicesSection')
+
     const servicesData: ServicesType[] = await getServices();
 
     // console.log("ServicesData:", servicesData);
@@ -23,14 +25,16 @@ export default async function ServicesSection(): Promise<JSX.Element> {
                                     className="relative overflow-hidden rounded-sm shadow-lg group h-100"
                                 >
                                     <div className="absolute inset-0">
-                                        <Image
-                                            src={service.imageService.image}
-                                            alt={service.imageService.alt || service.titre}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                            priority
-                                            className="object-cover transition-transform duration-250 group-hover:scale-105"
-                                        />
+                                        {service.imageService?.image && (
+                                            <Image
+                                                src={service.imageService.image}
+                                                alt={service.imageService.alt || service.titre}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                priority
+                                                className="object-cover transition-transform duration-250 group-hover:scale-105"
+                                            />
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent"></div>
                                     </div>
                                     <div className="relative h-full flex flex-col justify-end self-stretch p-6 gap-3 text-white">

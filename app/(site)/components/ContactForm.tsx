@@ -10,6 +10,8 @@ type ContactFormProps = {
 };
 
 export default function ContactForm({ formConfig }: ContactFormProps) {
+    console.log('Rendering ContactForm')
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<{
         success: boolean;

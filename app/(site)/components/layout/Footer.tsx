@@ -5,6 +5,9 @@ import Link from "next/link";
 import Logo from "../../../../public/logo.png";
 
 export default function Footer() {
+
+  console.log('Rendering Footer')
+
   return (
     <footer className="flex flex-col md:flex-row justify-center md:justify-between items-center pr-5 pl-5 md:pr-20 md:pl-20  pb-15 md:pb-0 gap-6 md:gap-0">
       <div className="flex flex-col gap-6 justify-center shrink-0 items-start md:items-center order-1 md:order-none"> 

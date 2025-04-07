@@ -28,12 +28,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  console.log('App loaded');
+
   return (
     <html lang="fr">
+<<<<<<< Updated upstream
       <head>
         <meta name="title" content={String(metadata.title ?? '')} />
         <meta name="description" content={String(metadata.description ?? '')} />
       </head>
+=======
+>>>>>>> Stashed changes
       <body id="top" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
         <Navbar />
         {children}
