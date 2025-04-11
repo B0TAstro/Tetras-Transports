@@ -1,5 +1,3 @@
-// app/studio/page.tsx
-
 import "../globals.css";
 
 export default function StudioLayout({children}: {children: React.ReactNode}) {

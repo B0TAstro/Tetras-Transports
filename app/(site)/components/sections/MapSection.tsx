@@ -5,9 +5,7 @@ import { getMap } from '@/sanity/sanity.query';
 import type { MapType } from '@/types';
 import type { JSX } from 'react';
 
-export default async function MapSection(): Promise<JSX.Element> {
-    console.log('Rendering MapSection')
-
+export default async function WhoSection(): Promise<JSX.Element> {
     const mapData: MapType[] = await getMap();
 
     // console.log("MapData:", mapData);

@@ -1,12 +1,10 @@
 // app/layout.tsx
 
-'use client';
-
 import "../globals.css";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import Navbar from "../(site)/components/layout/Navbar";
 import Footer from "../(site)/components/layout/Footer";
-import { metadata } from "./metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,24 +21,19 @@ const inter = Inter({
   subsets: ["latin"]
 });
 
+export const metadata: Metadata = {
+  title: "Tetras Transport",
+  description: "One page website for Tetras Transport",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  console.log('App loaded');
-
   return (
     <html lang="fr">
-<<<<<<< Updated upstream
-      <head>
-        <meta name="title" content={String(metadata.title ?? '')} />
-        <meta name="description" content={String(metadata.description ?? '')} />
-      </head>
-=======
->>>>>>> Stashed changes
-      <body id="top" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
+      <body  id="top" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
         <Navbar />
         {children}
         <Footer />

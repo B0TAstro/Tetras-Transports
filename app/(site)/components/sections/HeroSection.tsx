@@ -16,8 +16,6 @@ const components = {
 };
 
 export default async function HeroSection(): Promise<JSX.Element> {
-    console.log('Rendering HeroSection')
-
     const hero: HeroType[] = await getHero();
 
     // console.log("heroData:", hero);

@@ -20,8 +20,6 @@ type TestimonialsSliderProps = {
 };
 
 export default function TestimonialsSlider({ testimonials }: TestimonialsSliderProps) {
-  console.log('Rendering TestimonialsSlider');
-  
   const swiperRef = useRef<SwiperClass | null>(null);
   const handleMouseEnter = () => {
     if (swiperRef.current) {

@@ -6,8 +6,6 @@ import type { ValuesType } from '@/types';
 import type { JSX } from 'react';
 
 export default async function ValuesSection(): Promise<JSX.Element> {
-  console.log('Rendering ValuesSection')
-
   const valuesData: ValuesType[] = await getValues();
 
   // console.log("valuesData:", valuesData);

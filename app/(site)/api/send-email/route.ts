@@ -37,15 +37,15 @@ export async function POST(request: Request) {
         const prenom = formData.prénom || formData.firstname || 'Non spécifié';
         const email = formData.email || formData.mail || 'Non spécifié';
         const sujet = formData.sujet || formData.object || 'Autre';
-
+        
         const textareaField = contactFormConfig.formFields.find(
             (field: { fieldName: string, fieldType: string }) => field.fieldType === "textarea"
         );
-        const normalizeFieldName = (name: string) =>
+                const normalizeFieldName = (name: string) => 
             name.toLowerCase().replace(/\s+/g, '');
         const fieldKey = textareaField ? normalizeFieldName(textareaField.fieldName) : '';
         const contenu = fieldKey && formData[fieldKey] ? formData[fieldKey] : 'Aucun contenu fourni';
-
+                
         const htmlContent = `
             <p>Bonjour,</p>
             <p>Vous avez reçu un nouveau message depuis votre formulaire de contact du site de <strong>Tetras Transport</strong> :</p>

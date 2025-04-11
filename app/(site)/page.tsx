@@ -1,8 +1,5 @@
 // app/page.tsx
 
-'use client';
-
-import { useEffect, useState } from 'react';
 import { getSections } from '@/sanity/sanity.query';
 import type { SectionType } from '@/types';
 
@@ -22,25 +19,17 @@ const sectionComponents: Record<string, React.FC<{ data: SectionType }>> = {
   contact: ContactSection,
 };
 
-export default function Home() {
-  const [sections, setSections] = useState<SectionType[]>([]);
-  
-  useEffect(() => {
-    const fetchSections = async () => {
-      const fetchedSections = await getSections();
-      const orderedSections = fetchedSections.sort((a: SectionType, b: SectionType) => {
-        const order = ['hero', 'who', 'services', 'values', 'map', 'contact'];
-        return order.indexOf(a._type) - order.indexOf(b._type);
-      });
-      setSections(orderedSections);
-    };
-    
-    fetchSections();
-  }, []);
+export default async function Home() {
+  const sections: SectionType[] = await getSections();
+
+  const orderedSections = sections.sort((a, b) => {
+    const order = ['hero', 'who', 'services', 'values', 'map', 'contact'];
+    return order.indexOf(a._type) - order.indexOf(b._type);
+  });
 
   return (
     <main>
-      {sections.map((section) => {
+      {orderedSections.map((section) => {
         const SectionComponent = sectionComponents[section._type];
         return SectionComponent ? (
           <section key={section._id} id={section._type}>
