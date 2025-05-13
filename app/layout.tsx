@@ -1,10 +1,10 @@
 // app/layout.tsx
 
-import "../globals.css";
+import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
-import Navbar from "../(site)/components/layout/Navbar";
-import Footer from "../(site)/components/layout/Footer";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
