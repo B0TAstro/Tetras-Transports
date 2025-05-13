@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -21,6 +21,7 @@ type TestimonialsSliderProps = {
 
 export default function TestimonialsSlider({ testimonials }: TestimonialsSliderProps) {
   const swiperRef = useRef<SwiperClass | null>(null);
+  
   const handleMouseEnter = () => {
     if (swiperRef.current) {
       swiperRef.current.autoplay.stop();
@@ -33,10 +34,20 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
     }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (swiperRef.current) {
+        swiperRef.current.update();
+      }
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div
-    className="testimonials-slider w-full max-w-[99vw]"
-    onMouseEnter={handleMouseEnter}
+      className="testimonials-slider w-full overflow-hidden"
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Swiper
@@ -44,7 +55,7 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
           swiperRef.current = swiper;
         }}
         modules={[Autoplay]}
-        slidesPerView={'auto'}
+        slidesPerView="auto"
         spaceBetween={55}
         loop={true}
         speed={6000}
@@ -56,10 +67,10 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
         className="mySwiper"
       >
         {testimonials.map((testimonial, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex gap-3">
+          <SwiperSlide key={index} className="!w-auto">
+            <div className="flex gap-3 items-center">
               <blockquote className="font-inter font-normal italic text-center text-base">&quot;{testimonial.quote}&quot;</blockquote>
-              <p className="font-inter font-medium italic text-center text-base">{testimonial.author}</p>
+              <p className="font-inter font-medium italic text-center text-base whitespace-nowrap">{testimonial.author}</p>
             </div>
           </SwiperSlide>
         ))}

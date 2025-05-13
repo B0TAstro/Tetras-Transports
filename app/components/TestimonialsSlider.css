@@ -1,6 +1,10 @@
 /* components/TestimonialsSlider.css */
 
 .swiper-slide {
-    width: auto;
-    flex-shrink: 0;
-  }  
+  width: auto !important;
+  flex-shrink: 0;
+}
+
+.testimonials-slider .swiper {
+  overflow: visible;
+}
