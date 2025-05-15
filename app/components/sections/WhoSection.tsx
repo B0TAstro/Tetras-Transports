@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { PortableText } from "@portabletext/react";
-import { getWho } from '@/sanity/sanity.query';
+import { getWho } from '@/lib/sanity.query';
 import type { WhoType } from '@/types';
 import type { JSX } from 'react';
 

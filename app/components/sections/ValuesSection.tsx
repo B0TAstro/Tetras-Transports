@@ -1,7 +1,7 @@
 // components/ValuesSection.tsx
 
 import Image from 'next/image';
-import { getValues } from '@/sanity/sanity.query';
+import { getValues } from '@/lib/sanity.query';
 import type { ValuesType } from '@/types';
 import type { JSX } from 'react';
 

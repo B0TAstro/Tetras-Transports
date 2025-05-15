@@ -1,7 +1,7 @@
 // components/MapSection.tsx
 
 import Image from 'next/image';
-import { getMap } from '@/sanity/sanity.query';
+import { getMap } from '@/lib/sanity.query';
 import type { MapType } from '@/types';
 import type { JSX } from 'react';
 

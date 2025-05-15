@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { PortableText } from "@portabletext/react";
-import { getServices } from '@/sanity/sanity.query';
+import { getServices } from '@/lib/sanity.query';
 import type { ServicesType } from '@/types';
 import type { JSX } from 'react';
 

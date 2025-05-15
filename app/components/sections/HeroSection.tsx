@@ -1,6 +1,6 @@
 // components/HeroSection.tsx
 
-import { getHero } from '@/sanity/sanity.query';
+import { getHero } from '@/lib/sanity.query';
 import type { HeroType } from '@/types';
 import { PortableText } from "@portabletext/react";
 import dynamic from 'next/dynamic';

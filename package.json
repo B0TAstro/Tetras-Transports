@@ -1,6 +1,6 @@
 {
-  "name": "tetras-transports",
-  "version": "0.1.0",
+  "name": "tetras-transport-site",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,31 +10,27 @@
   },
   "dependencies": {
     "@portabletext/react": "^3.2.1",
-    "@sanity/client": "^6.28.3",
-    "@sanity/vision": "^3.78.1",
     "@sendgrid/mail": "^8.1.4",
-    "@types/nodemailer": "^6.7.0",
     "lucide-react": "^0.483.0",
-    "next": "14.2.0",
-    "next-sanity": "^9.9.0",
+    "next": "15.3.2",
+    "next-sanity": "^9.11.0",
     "nodemailer": "^6.10.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sanity": "^3.78.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "swiper": "^11.2.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.21",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/nodemailer": "^6.4.17",
     "eslint": "^9",
-    "eslint-config-next": "14.2.0",
+    "eslint-config-next": "15.3.2",
     "postcss": "^8.5.3",
     "react-icons": "^5.5.0",
-    "tailwindcss": "^4.0.14",
+    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }

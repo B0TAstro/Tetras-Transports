@@ -1,6 +1,6 @@
-// app/layout.tsx
+// layout.tsx
 
-import "../globals.css";
+import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import Navbar from "./components/layout/Navbar";
@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body  id="top" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
+      <body id="top" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
         <Navbar />
         {children}
         <Footer />

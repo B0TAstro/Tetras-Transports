@@ -2,7 +2,7 @@
 
 import { JSX } from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp, FaTiktok } from 'react-icons/fa';
-import { getContact } from '@/sanity/sanity.query';
+import { getContact } from '@/lib/sanity.query';
 import ContactForm from './ContactForm';
 import { ContactType } from '@/types';
 
