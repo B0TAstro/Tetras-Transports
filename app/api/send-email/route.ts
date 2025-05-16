@@ -84,8 +84,15 @@ export async function POST(request: Request) {
             });
 
             return NextResponse.json({ message: 'Email envoyé avec succès ✅' }, { status: 200 });
-        } catch (emailError) {
+        } catch (emailError: any) {
             console.error('Erreur lors de l\'envoi de l\'email via SendGrid:', emailError);
+            if (emailError.response) {
+                console.error('Détails de l\'erreur SendGrid:', {
+                    body: emailError.response.body,
+                    headers: emailError.response.headers,
+                    statusCode: emailError.response.statusCode
+                });
+            }
             return NextResponse.json({
                 message: 'Erreur lors de l\'envoi de l\'email',
                 error: emailError instanceof Error ? emailError.message : 'Erreur d\'envoi inconnue'
