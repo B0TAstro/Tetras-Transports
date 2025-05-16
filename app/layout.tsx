@@ -23,7 +23,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Tetras Transports",
-  description: "Transport privé, professionnel et touristique dans le Jura. Service sur-mesure et devis rapide avec Tetras Transport."
+  description: "Transport privé et professionnel basé dans le Jura et toute la France. Service sur-mesure et devis rapide avec Tetras Transport."
 
 };
 
