@@ -1,11 +1,12 @@
 // app/politique-confidentialite/page.tsx
+import Link from 'next/link';
 
 export default function PolitiqueConfidentialite() {
   return (
     <main className="max-w-3xl h-screen mx-auto p-8 space-y-6 mt-35">
 
       <div className="mb-8">
-        <a
+        <Link
           href="/"
           className="inline-flex items-center text-lg font-medium px-3 py-2 rounded-sm duration-250 border border-dark hover:text-blue-700 hover:border-blue-700"
         >
@@ -24,9 +25,9 @@ export default function PolitiqueConfidentialite() {
             />
           </svg>
           Retour à l'accueil
-        </a>
+        </Link>
       </div>
-      
+
       <h1 className="text-3xl font-bold">Politique de confidentialité</h1>
       <p>
         Nous nous engageons à protéger votre vie privée et vos données
