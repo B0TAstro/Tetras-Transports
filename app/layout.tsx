@@ -22,8 +22,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tetras Transport",
-  description: "One page website for Tetras Transport",
+  title: "Tetras Transports",
+  description: "Transport privé, professionnel et touristique dans le Jura. Service sur-mesure et devis rapide avec Tetras Transport."
+
 };
 
 export default function RootLayout({
