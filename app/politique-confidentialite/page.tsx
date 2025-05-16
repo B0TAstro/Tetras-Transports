@@ -15,7 +15,7 @@ export default function PolitiqueConfidentialite() {
       </p>
       <p>
         Vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de
-        vos données en nous contactant à : info@tetrastransports.fr.
+        vos données en nous contactant à : tetrastransport@gmail.com
       </p>
     </main>
   );

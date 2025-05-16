@@ -8,9 +8,11 @@ export default function MentionsLegales() {
         Ce site est édité par Tetras Transports, situé à Morbier, France.
       </p>
       <p>
-        Directeur de la publication : Tom Boullay<br />
+        Réalisation du site internet : <br />
+        <strong>Maëva Cesco-Resia</strong> – Chargé de projet et ui/ux designer<br />
+        <strong>Tom Boullay</strong> – Développeur web<br />
         Hébergement : OVH, France <br />
-        Contact : info@tetrastransports.fr
+        Contact : tetrastransport@gmail.com
       </p>
       <p>
         Toute reproduction ou représentation intégrale ou partielle faite sans
