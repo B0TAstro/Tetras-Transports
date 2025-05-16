@@ -1,5 +1,7 @@
 // app/page.tsx
 
+export const revalidate = 60;
+
 import HeroSection from './components/sections/HeroSection';
 import WhoSection from './components/sections/WhoSection';
 import ServicesSection from './components/sections/ServicesSection';
