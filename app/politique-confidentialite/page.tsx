@@ -24,7 +24,7 @@ export default function PolitiqueConfidentialite() {
               d="M10 19l-7-7m0 0l7-7m-7 7h18"
             />
           </svg>
-          Retour à l'accueil
+          Retour à l&apos;accueil
         </Link>
       </div>
 
