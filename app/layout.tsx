@@ -2,6 +2,7 @@
 
 import "./globals.css";
 import type { Metadata } from "next";
+import { getSeoSettings } from "@/lib/sanity.query";
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -21,17 +22,46 @@ const inter = Inter({
   subsets: ["latin"]
 });
 
-export const metadata: Metadata = {
-  title: "Tetras Transports",
-  description: "Transport professionnel et personnalisé depuis le Jura et alentours vers toute la France."
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getSeoSettings();
 
-};
+  const baseUrl = seo?.baseUrl;
+  const fullUrl = `${baseUrl}"/"}`;
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  return {
+    title: seo?.title,
+    description: seo?.description,
+    metadataBase: new URL(baseUrl),
+    alternates: { canonical: "/" },
+    openGraph: {
+      title: seo?.title,
+      description: seo?.description,
+      url: fullUrl,
+      siteName: seo?.siteName,
+      images: seo?.ogImage?.asset?.url ? [
+        {
+          url: seo.ogImage.asset.url,
+          width: 1200,
+          height: 630,
+          alt: seo.title
+        }
+      ] : [],
+      locale: "fr_FR",
+      type: "website"
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true
+      }
+    }
+  };
+}
+
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
       <body id="top" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
