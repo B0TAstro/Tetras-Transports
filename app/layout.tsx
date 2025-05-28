@@ -6,7 +6,7 @@ import { getSeoSettings } from "@/lib/sanity.query";
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +32,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: seo?.title || "Tetras Transports",
     description: seo?.description || "Transport de marchandises et services logistiques dans le Jura et toute la France",
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/favicon.ico",
+    },
     metadataBase: new URL(baseUrl),
     alternates: { canonical: "/" },
     openGraph: {
