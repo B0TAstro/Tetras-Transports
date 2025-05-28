@@ -25,25 +25,25 @@ const inter = Inter({
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoSettings();
 
-  const baseUrl = seo?.baseUrl;
-  const fullUrl = `${baseUrl}"/"}`;
+  const baseUrl = seo?.baseUrl || "https://tetrastransports.fr";
+  const fullUrl = `${baseUrl}/`;
 
   return {
-    title: seo?.title,
-    description: seo?.description,
+    title: seo?.title || "Tetras Transports",
+    description: seo?.description || "Transport de marchandises et services logistiques dans le Jura et toute la France",
     metadataBase: new URL(baseUrl),
     alternates: { canonical: "/" },
     openGraph: {
       title: seo?.title,
       description: seo?.description,
       url: fullUrl,
-      siteName: seo?.siteName,
+      siteName: seo?.siteName || "Tetras Transports",
       images: seo?.ogImage?.asset?.url ? [
         {
           url: seo.ogImage.asset.url,
           width: 1200,
           height: 630,
-          alt: seo.title
+          alt: seo.title || "Tetras Transports"
         }
       ] : [],
       locale: "fr_FR",
@@ -59,7 +59,6 @@ export async function generateMetadata(): Promise<Metadata> {
     }
   };
 }
-
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
