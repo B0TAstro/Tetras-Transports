@@ -23,7 +23,7 @@ export default async function ContactSection(): Promise<JSX.Element> {
 
     return (
         <section id="contact" className="relative font-inter text-white pr-5 pl-5 md:pr-20 md:pl-20 mt-25 md:mt-63 mb-15 overflow-x-hidden">
-            <div className="flex flex-col bg-blue-700 p-6 md:p-25 gap-8 md:gap-12 rounded-sm">
+            <div className="flex flex-col bg-[#312E81] p-6 md:p-25 gap-8 md:gap-12 rounded-sm">
                 <div className="flex flex-col gap-4">
                     <h2 className="text-2xl md:text-5xl font-bold self-stretch">{contactData.title || 'Contactez-nous'}</h2>
                     {contactData.subtitle && <p className="text-xl">{contactData.subtitle}</p>}
@@ -50,7 +50,7 @@ export default async function ContactSection(): Promise<JSX.Element> {
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="bg-white text-blue-600 p-2.5 rounded-full hover:bg-blue-100 transition-colors"
+                                        className="bg-white text-[#312E81] p-2.5 rounded-full hover:bg-blue-100 transition-colors"
                                         aria-label={social.platform}
                                     >
                                         {getSocialIcon(social.platform)}

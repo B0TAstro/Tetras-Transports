@@ -135,7 +135,7 @@ export default function ContactForm({ formConfig }: ContactFormProps) {
                 disabled={isSubmitting}
                 className={`md:col-span-2 py-3 rounded-md font-semibold transition-colors ${isSubmitting
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-white text-blue-600 hover:bg-gray-100'
+                    : 'bg-white text-[#312E81] hover:bg-gray-100'
                     }`}
             >
                 {isSubmitting ? 'Envoi en cours...' : formConfig.submitButtonText}
