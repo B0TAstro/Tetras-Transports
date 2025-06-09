@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: seo?.title || "Tetras Transports",
-    description: seo?.description || "Transport de marchandises et services logistiques dans le Jura et toute la France",
+    description: seo?.description || "Transport professionnel et personnalisé depuis le Jura et alentours vers toute la France.",
     icons: {
       icon: "/favicon.ico",
       shortcut: "/favicon.ico",
