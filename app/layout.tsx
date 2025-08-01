@@ -7,6 +7,7 @@ import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,8 +72,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body id="top" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
         <Navbar />
         {children}
-        <SpeedInsights />
         <Footer />
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
